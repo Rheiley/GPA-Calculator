@@ -6,6 +6,10 @@ body {
     text-align: center;
     color: #4c82af;
   }
+  .dark-theme h1 {
+    text-align: center;
+    color: #77b9ee;
+  }
   
   form {
     display: flex;
@@ -48,11 +52,21 @@ body {
     border-radius: 4px;
     cursor: pointer;
   }
+  .dark-theme button {
+    width: 50%;
+    background-color: #386e3a;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
   theme-toggle-button {
     width: 50%;
     background-color: #000000;
-    color: white;
+    color: white(255, 255, 255);
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -91,7 +105,7 @@ body {
   }
 
   .dark-theme {
-    background-color: black;
+    background-color: rgb(37, 33, 43);
     color: white;
   }
 
@@ -99,5 +113,15 @@ body {
     background-color: white;
     color: black;
   }
+
+  .grade-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .grade-input {
+    margin-right: 10px;
+  }
+  
 
 

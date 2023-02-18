@@ -4,13 +4,14 @@
   <title>GPA Calculator</title>
 </head>
 <body class="dark-theme">
-  <h1>UBC GPA Calculator</h1>
+  <h1>GPA Calculator</h1>
   <form>
     <label for="numCourses">Number of courses:</label><br>
     <input type="number" id="numCourses" name="numCourses" oninput="updateGrades()"><br>
-    <div id="courses">
+    <div id="courses" class="grade-container">
     </div>
-    <button type="button" onclick="calculateGPA()">Calculate GPA</button>
+    <button type="button" onclick="calculateGPA(4.33)">Calculate GPA (4.33 Scale)</button>
+    <button type="button" onclick="calculateGPA(4.0)">Calculate GPA (4.0 scale)</button>
     <button id="theme-toggle-button">Toggle theme</button>
   </form>
   <br>
@@ -18,18 +19,25 @@
   <div id="result2"></div> 
   
   <script>
-    function calculateGPA() {
+    function calculateGPA(scale) {
       // get the number of courses
       var numCourses = document.getElementById("numCourses").value;
+      
 
       // create an array to store the grades for each course
       var grades = [];
+      
 
       // get the grade inputs and store them in the grades array
       for (var i = 0; i < numCourses; i++) {
         var gradeInput = "grade" + (i + 1);
         var grade = document.getElementById(gradeInput).value;
         grades.push(grade);
+      }
+
+      if(grade > 100 || grade < 0){
+        alert("Please enter a valid value from 0-100.")
+        return;
       }
 
       // calculate the GPA
@@ -39,55 +47,72 @@
       }
       var gpa = sum / numCourses;
       var gpa2 = 0;
-      if(gpa >= 90) gpa2 = 4.33;
-      else if(gpa < 90 & gpa >= 89) gpa2 = 4.30;
-      else if(gpa < 89 & gpa >= 88) gpa2 = 4.20;
-      else if(gpa < 88 & gpa >= 87) gpa2 = 4.10;
-      else if(gpa < 87 & gpa >= 86) gpa2 = 4.00;
-      else if(gpa < 86 & gpa >= 85) gpa2 = 3.95;
-      else if(gpa < 85 & gpa >= 84) gpa2 = 3.90;
-      else if(gpa < 84 & gpa >= 83) gpa2 = 3.85;
-      else if(gpa < 83 & gpa >= 82) gpa2 = 3.80;
-      else if(gpa < 82 & gpa >= 81) gpa2 = 3.75;
-      else if(gpa < 81 & gpa >= 80) gpa2 = 3.70;
-      else if(gpa < 80 & gpa >= 79) gpa2 = 3.60;
-      else if(gpa < 79 & gpa >= 78) gpa2 = 3.50;
-      else if(gpa < 80 & gpa >= 79) gpa2 = 3.60;
-      else if(gpa < 79 & gpa >= 78) gpa2 = 3.50;
-      else if(gpa < 78 & gpa >= 77) gpa2 = 3.40;
-      else if(gpa < 77 & gpa >= 76) gpa2 = 3.30;
-      else if(gpa < 76 & gpa >= 75) gpa2 = 3.20;
-      else if(gpa < 75 & gpa >= 74) gpa2 = 3.10;
-      else if(gpa < 74 & gpa >= 73) gpa2 = 3.00;
-      else if(gpa < 73 & gpa >= 72) gpa2 = 2.95;
-      else if(gpa < 72 & gpa >= 71) gpa2 = 2.90;
-      else if(gpa < 71 & gpa >= 70) gpa2 = 2.80;
-      else if(gpa < 70 & gpa >= 69) gpa2 = 2.70;
-      else if(gpa < 69 & gpa >= 68) gpa2 = 2.65;
-      else if(gpa < 68 & gpa >= 67) gpa2 = 2.60;
-      else if(gpa < 67 & gpa >= 66) gpa2 = 2.55;
-      else if(gpa < 66 & gpa >= 65) gpa2 = 2.50;
-      else if(gpa < 65 & gpa >= 64) gpa2 = 2.40;
-      else if(gpa < 64 & gpa >= 63) gpa2 = 2.30;
-      else if(gpa < 63 & gpa >= 62) gpa2 = 2.20;
-      else if(gpa < 62 & gpa >= 61) gpa2 = 2.10;
-      else if(gpa < 61 & gpa >= 60) gpa2 = 2.00;
-      else if(gpa < 60 & gpa >= 59) gpa2 = 1.90;
-      else if(gpa < 59 & gpa >= 58) gpa2 = 1.80;
-      else if(gpa < 58 & gpa >= 57) gpa2 = 1.70;
-      else if(gpa < 57 & gpa >= 56) gpa2 = 1.60;
-      else if(gpa < 56 & gpa >= 55) gpa2 = 1.50;
-      else if(gpa < 55 & gpa >= 54) gpa2 = 1.40;
-      else if(gpa < 54 & gpa >= 53) gpa2 = 1.30;
-      else if(gpa < 53 & gpa >= 52) gpa2 = 1.20;
-      else if(gpa < 52 & gpa >= 51) gpa2 = 1.10;
-      else gpa2 = 1.00
-
+      if(scale == 4.33){
+        if(gpa >= 90) gpa2 = 4.33;
+        else if(gpa < 90 & gpa >= 89) gpa2 = 4.30;
+        else if(gpa < 89 & gpa >= 88) gpa2 = 4.20;
+        else if(gpa < 88 & gpa >= 87) gpa2 = 4.10;
+        else if(gpa < 87 & gpa >= 86) gpa2 = 4.00;
+        else if(gpa < 86 & gpa >= 85) gpa2 = 3.95;
+        else if(gpa < 85 & gpa >= 84) gpa2 = 3.90;
+        else if(gpa < 84 & gpa >= 83) gpa2 = 3.85;
+        else if(gpa < 83 & gpa >= 82) gpa2 = 3.80;
+        else if(gpa < 82 & gpa >= 81) gpa2 = 3.75;
+        else if(gpa < 81 & gpa >= 80) gpa2 = 3.70;
+        else if(gpa < 80 & gpa >= 79) gpa2 = 3.60;
+        else if(gpa < 79 & gpa >= 78) gpa2 = 3.50;
+        else if(gpa < 80 & gpa >= 79) gpa2 = 3.60;
+        else if(gpa < 79 & gpa >= 78) gpa2 = 3.50;
+        else if(gpa < 78 & gpa >= 77) gpa2 = 3.40;
+        else if(gpa < 77 & gpa >= 76) gpa2 = 3.30;
+        else if(gpa < 76 & gpa >= 75) gpa2 = 3.20;
+        else if(gpa < 75 & gpa >= 74) gpa2 = 3.10;
+        else if(gpa < 74 & gpa >= 73) gpa2 = 3.00;
+        else if(gpa < 73 & gpa >= 72) gpa2 = 2.95;
+        else if(gpa < 72 & gpa >= 71) gpa2 = 2.90;
+        else if(gpa < 71 & gpa >= 70) gpa2 = 2.80;
+        else if(gpa < 70 & gpa >= 69) gpa2 = 2.70;
+        else if(gpa < 69 & gpa >= 68) gpa2 = 2.65;
+        else if(gpa < 68 & gpa >= 67) gpa2 = 2.60;
+        else if(gpa < 67 & gpa >= 66) gpa2 = 2.55;
+        else if(gpa < 66 & gpa >= 65) gpa2 = 2.50;
+        else if(gpa < 65 & gpa >= 64) gpa2 = 2.40;
+        else if(gpa < 64 & gpa >= 63) gpa2 = 2.30;
+        else if(gpa < 63 & gpa >= 62) gpa2 = 2.20;
+        else if(gpa < 62 & gpa >= 61) gpa2 = 2.10;
+        else if(gpa < 61 & gpa >= 60) gpa2 = 2.00;
+        else if(gpa < 60 & gpa >= 59) gpa2 = 1.90;
+        else if(gpa < 59 & gpa >= 58) gpa2 = 1.80;
+        else if(gpa < 58 & gpa >= 57) gpa2 = 1.70;
+        else if(gpa < 57 & gpa >= 56) gpa2 = 1.60;
+        else if(gpa < 56 & gpa >= 55) gpa2 = 1.50;
+        else if(gpa < 55 & gpa >= 54) gpa2 = 1.40;
+        else if(gpa < 54 & gpa >= 53) gpa2 = 1.30;
+        else if(gpa < 53 & gpa >= 52) gpa2 = 1.20;
+        else if(gpa < 52 & gpa >= 51) gpa2 = 1.10;
+        else gpa2 = 1.00
+      }
+      else{
+        if(gpa >= 93) gpa2 = 4.0;
+        else if(gpa < 93 & gpa >= 90) gpa2 = 3.7;
+        else if(gpa < 90 & gpa >= 87) gpa2 = 3.3;
+        else if(gpa < 87 & gpa >= 83) gpa2 = 3.0;
+        else if(gpa < 83 & gpa >= 80) gpa2 = 2.7;
+        else if(gpa < 80 & gpa >= 77) gpa2 = 2.3;
+        else if(gpa < 77 & gpa >= 73) gpa2 = 2.0;
+        else if(gpa < 73 & gpa >= 70) gpa2 = 1.7;
+        else if(gpa < 70 & gpa >= 67) gpa2 = 1.3;
+        else gpa2 = 1.00
+      }
 
       // display the result
-
+      
       document.getElementById("result").innerHTML = "Your GPA in % is: " + gpa + "%"; 
+      if(scale==4.33){
       document.getElementById("result2").innerHTML = "Your GPA on a 4.33 scale is: " + gpa2; 
+      }
+      else
+      document.getElementById("result2").innerHTML = "Your GPA on a 4.0 scale is: " + gpa2; 
     }
 
     // create inputs for entering grades when the number of courses changes
@@ -111,6 +136,7 @@
         document.getElementById("courses").appendChild(input);
         document.getElementById("courses").appendChild(document.createElement("br"));
       }
+      
     }
     function toggleTheme(event) {
       event.preventDefault();
