@@ -1,3 +1,3 @@
 # GPA-Calculator
  
-A simple GPA calculator based on UBC's 4.33 grading scale.
+A simple GPA calculator that can calculate on a 4.33 or 4.0 scale.
