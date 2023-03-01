@@ -35,14 +35,13 @@
         grades.push(grade);
       }
 
-      if(grade > 100 || grade < 0){
-        alert("Please enter a valid value from 0-100.")
-        return;
-      }
-
       // calculate the GPA
       var sum = 0;
       for (var i = 0; i < grades.length; i++) {
+        if(grades[i]<0 || grades[i] > 100) {
+          alert("Please enter a valid value from 0-100")
+          return;
+        }
         sum += parseInt(grades[i]);
       }
       var gpa = sum / numCourses;
